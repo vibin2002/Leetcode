@@ -1,25 +1,24 @@
-public class Sieve{
+import java.util.Scanner;
 
-    public static void main(String[] args)
+public class XpowerY{
+    
+    static int xpowery(int x,int y)
     {
-        int n = 15;
-        boolean a[] = new boolean[n + 1];
-        for (int i = 2; i <= Math.sqrt(n); i++)
+        int res = 1;
+        while(y>0)
         {
-            if (a[i] == false) {
-                for (int j = i * i; j <= n; j = j + i)
-                {
-                    a[j] = true;
-                }
-            }
+            if(y%2 == 1)
+                res = res*x;
+            x = x*x;
+            y=y/2;
         }
-        for (int i = 2; i <= n; i++)
-        {
-            if (a[i] == false)
-            {
-                System.out.print(i + " ");
-            }
-        }
+        return res;
     }
-
+    
+    public static void main(String args[]) {
+         Scanner sc = new Scanner(System.in);
+         int x = sc.nextInt();
+         int y = sc.nextInt();
+         System.out.print(xpowery(x,y));
+    }
 }
