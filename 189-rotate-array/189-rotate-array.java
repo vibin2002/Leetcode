@@ -3,7 +3,7 @@ class Solution {
         int n = nums.length;
         if(nums.length <=1 || k%n == 0)
             return;
-        // k = k%n;
+        k = k%n;
         int prev = 0;
         int index = 0;
         int aux = nums[0];
