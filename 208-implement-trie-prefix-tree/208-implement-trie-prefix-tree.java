@@ -1,11 +1,8 @@
 class Trie {
-
     TrieNode root;
-    
     Trie(){
         root = new TrieNode();
     }
-    
     static class TrieNode {
         TrieNode[] children = new TrieNode[26];
         boolean isEnd = false;
@@ -14,7 +11,6 @@ class Trie {
     public void insert(String word) {
         int len = word.length();
         TrieNode temp = root;
-        
         for(int i=0;i<len;i++){
             int index = word.charAt(i) - 'a';
             if(temp.children[index] == null)    
@@ -27,13 +23,11 @@ class Trie {
     public boolean search(String word) {
         int len = word.length();
         TrieNode temp = root;
-        
         for(int i=0;i<len;i++){
             int index = word.charAt(i) - 'a';
             if(temp.children[index] == null)    
                 return false;
-            else
-                temp = temp.children[index];
+            temp = temp.children[index];
         }
         return temp.isEnd;
     }
@@ -47,8 +41,6 @@ class Trie {
                 return false;
             temp = temp.children[index];
         }
-        if(temp == null)
-            return false;
         return true;
     }
 }
