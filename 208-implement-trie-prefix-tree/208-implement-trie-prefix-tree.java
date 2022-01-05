@@ -9,9 +9,6 @@ class Trie {
     static class TrieNode {
         TrieNode[] children = new TrieNode[26];
         boolean isEnd = false;
-        TrieNode(){
-            Arrays.fill(children,null);
-        }
     }
     
     public void insert(String word) {
