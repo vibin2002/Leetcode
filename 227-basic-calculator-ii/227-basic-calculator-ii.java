@@ -7,15 +7,15 @@ class Solution {
         for(int i=0;i<len;i++)
         {
             char ch = s.charAt(i);
-            if(Character.isWhitespace(ch))
+            if(ch == ' ') 
                 continue;
-            while(Character.isDigit(ch)){
+            while(ch>=48 && ch<=57){
                 currNum = currNum*10 + (ch-'0');
                 i++;
                 if(i>=len) break;
                 ch = s.charAt(i);
             }
-            if(!Character.isDigit(ch) || !Character.isWhitespace(ch) || i==len-1)
+            if(!(ch>=48 && ch<=57) || !(ch == ' ') || i==len-1)
             {
                 if(operation == '-')
                     stack.push(-currNum);
