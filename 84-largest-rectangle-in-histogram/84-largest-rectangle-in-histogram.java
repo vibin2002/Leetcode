@@ -3,22 +3,22 @@ class Solution {
         int n = heights.length;
         int[] pse = new int[n];
         int[] nse = new int[n];
-        Stack<Integer> stack = new Stack<>();
+        Deque<Integer> stack = new ArrayDeque<>();
         for(int i=0;i<n;i++){
-            while(!stack.empty() && heights[stack.peek()]>heights[i])
+            while(!stack.isEmpty() && heights[stack.peek()]>heights[i])
                 stack.pop();
-            if(stack.empty())
+            if(stack.isEmpty())
                 pse[i] = 0;
             else
                 pse[i] = stack.peek()+1;
             stack.push(i);
         }
-        while(!stack.empty())
+        while(!stack.isEmpty())
             stack.pop();
         for(int i=n-1;i>=0;i--){
-            while(!stack.empty() && heights[stack.peek()]>=heights[i])
+            while(!stack.isEmpty() && heights[stack.peek()]>=heights[i])
                 stack.pop();
-            if(stack.empty())
+            if(stack.isEmpty())
                 nse[i] = n;
             else
                 nse[i] = stack.peek();
