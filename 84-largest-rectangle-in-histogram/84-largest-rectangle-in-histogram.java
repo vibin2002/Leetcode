@@ -13,7 +13,8 @@ class Solution {
                 pse[i] = stack.peek()+1;
             stack.push(i);
         }
-        stack = new Stack<>();
+        while(!stack.empty())
+            stack.pop();
         for(int i=n-1;i>=0;i--){
             while(!stack.empty() && heights[stack.peek()]>=heights[i])
                 stack.pop();
@@ -23,12 +24,9 @@ class Solution {
                 nse[i] = stack.peek();
             stack.push(i);
         }
-        // System.out.println(Arrays.toString(pse));
-        // System.out.println(Arrays.toString(nse));
         int max = 0;
         for(int i=0;i<n;i++){
             int area = (nse[i]-pse[i])*heights[i];
-            // System.out.println(area);
             if(area > max) max = area;
         }
         return max;
