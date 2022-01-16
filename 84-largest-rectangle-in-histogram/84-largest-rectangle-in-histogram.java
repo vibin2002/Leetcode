@@ -5,12 +5,8 @@ class Solution {
         int[] nse = new int[n];
         Deque<Integer> stack = new ArrayDeque<>();
         for(int i=0;i<n;i++){
-            while(!stack.isEmpty() && heights[stack.peek()]>heights[i])
-                stack.pop();
-            if(stack.isEmpty())
-                pse[i] = 0;
-            else
-                pse[i] = stack.peek()+1;
+            while(!stack.isEmpty() && heights[stack.peek()]>heights[i]) stack.pop();
+            pse[i] = stack.isEmpty() ? 0 : stack.peek()+1;
             stack.push(i);
         }
         while(!stack.isEmpty())
@@ -18,10 +14,7 @@ class Solution {
         for(int i=n-1;i>=0;i--){
             while(!stack.isEmpty() && heights[stack.peek()]>=heights[i])
                 stack.pop();
-            if(stack.isEmpty())
-                nse[i] = n;
-            else
-                nse[i] = stack.peek();
+            nse[i] = stack.isEmpty() ? n : stack.peek();
             stack.push(i);
         }
         int max = 0;
