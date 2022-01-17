@@ -6,8 +6,7 @@ class Solution {
         for(int i=0;i<arr.length;i++){
             char ch = pattern.charAt(i);
             if(map.containsKey(ch)){
-                String val = map.get(ch);
-                if(!arr[i].equals(val))
+                if(!arr[i].equals(map.get(ch)))
                     return false;
             } else {
                 if(map.containsValue(arr[i]))
