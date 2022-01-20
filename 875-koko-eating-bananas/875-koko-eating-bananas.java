@@ -8,7 +8,7 @@ class Solution {
             int mid = l+(r-l)/2;
             int time = 0;
             for(int p:piles){
-                time = time + (int)Math.ceil((double)p/mid);
+                time = time + (int)Math.ceil(1.0*p/mid);
             }
             
             if(time<=h) 
