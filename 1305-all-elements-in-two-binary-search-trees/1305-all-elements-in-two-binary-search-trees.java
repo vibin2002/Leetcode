@@ -20,6 +20,11 @@ class Solution {
         List<Integer> res = new ArrayList<>();
         traverse(root1,l1);
         traverse(root2,l2);
+        if (root1 == null) {
+            return l2;
+        } else if (root2 == null) {
+            return l1;
+        }
         while(l1.size()>0 && l2.size()>0){
             if(l1.get(0) < l2.get(0)){
                 res.add(l1.get(0));
