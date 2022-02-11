@@ -8,7 +8,6 @@ class Solution {
             freq1[s1.charAt(i)-'a']++;
         int start = 0,end = 0;
         for(int i=0;i<=s2.length();i++){
-            System.out.println(Arrays.toString(freq2));
             if(i<s1.length()){
                 freq2[s2.charAt(i)-'a']++;
                 end = i;
