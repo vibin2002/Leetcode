@@ -4,19 +4,21 @@ class Solution {
         Set<Integer> posDiag = new HashSet<>();
         Set<Integer> negDiag = new HashSet<>();
         List<List<String>> res = new ArrayList<>();
-        List<String> board = new ArrayList<>();
-        String row = ".".repeat(n);
-        for(int i=0;i<n;i++)
-            board.add(row);
-        System.out.print(board);
+        
+        char board[][] = new char[n][n];
+        for(char row[]:board)
+            Arrays.fill(row,'.');
+
         backtrack(0,n,col,posDiag,negDiag,res,board);
         return res;
     }
     
-    public void backtrack(int r,int n,Set<Integer> col,Set<Integer> posDiag,Set<Integer> negDiag,List<List<String>> res,List<String> board){
+    public void backtrack(int r,int n,Set<Integer> col,Set<Integer> posDiag,Set<Integer> negDiag,List<List<String>> res,char board[][]){
         if(r==n){
             List<String> copy = new ArrayList<>();
-            copy.addAll(board);
+            for(char row[]:board){
+                copy.add(String.valueOf(row));
+            }
             res.add(copy);
             return;
         }
@@ -26,15 +28,12 @@ class Solution {
             col.add(i);
             posDiag.add(r+i);
             negDiag.add(r-i);
-            String temp = board.get(r);
-            char row[] = temp.toCharArray();
-            row[i] = 'Q';
-            board.set(r,String.valueOf(row));
+            board[r][i] = 'Q';
             backtrack(r+1,n,col,posDiag,negDiag,res,board);
             col.remove(i);
             posDiag.remove(r+i);
             negDiag.remove(r-i);
-            board.set(r,temp);
+            board[r][i] = '.';
         }
     }
 }
