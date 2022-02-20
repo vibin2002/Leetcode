@@ -16,7 +16,6 @@ class intervalsComparator implements Comparator<int[]> {
 
 class Solution {
     public int removeCoveredIntervals(int[][] intervals) {
-
         Arrays.sort(intervals, new intervalsComparator());
         int maxEnd = intervals[0][1];
         int res = intervals.length;
