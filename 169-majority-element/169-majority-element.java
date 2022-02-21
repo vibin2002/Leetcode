@@ -1,15 +1,29 @@
 class Solution {
     public int majorityElement(int[] nums) {
-        int len=nums.length,curr=0,result=0;
-        int min=len/2;
-        for(int i=0;i<32;i++){
-            curr=0;
-            for(int j=0;j<len;j++){
-                if((nums[j]&(1<<i))!=0) curr++;
+        int res = 0;
+        int n = nums.length;
+        for(int i=0;i<32;i++)
+        {
+            int mask = 1 << i;
+            long ones = 0;
+            long zeros = 0;
+            for(int num : nums) 
+            {
+                if((mask & num) != 0) {
+                    ones++;
+                }
+                else {
+                    zeros++;
+                }
             }
-            
-            if(curr>min) result=result + (1<<i);
+            // System.out.println(i+" "+ones+" "+zeros);
+            if(ones > zeros)
+            {
+                int x = 1<<i;
+                res = res + x;
+                // System.out.println(x+" "+res);
+            }
         }
-        return result;
+        return res;
     }
 }
