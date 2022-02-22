@@ -10,16 +10,13 @@ class Solution {
         int curr = 0,low = 0,high = nums.length-1;
         while(curr<=high){
             if(nums[curr] == 0){
-                swap(nums,low,curr);
-                low++;
-                curr++;
+                swap(nums,low++,curr++);
             }
             else if(nums[curr] == 1){
                 curr++;
             }
             else if(nums[curr] == 2){
-                swap(nums,curr,high);
-                high--;
+                swap(nums,curr,high--);
             }
         }
     }
