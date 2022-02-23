@@ -5,7 +5,7 @@ class Solution {
         while(i>=0 && nums[i]>=nums[i+1])
             i--;
         if(i==-1){
-            reverse(nums,0,len-1);
+            Arrays.sort(nums);
             return;
         }
         int index = i;
@@ -14,15 +14,8 @@ class Solution {
         }
         System.out.print(index+" "+i);
         swap(nums,index,i);
-        reverse(nums,index+1,len-1);
-    }
-    
-    public static void reverse(int nums[],int start,int end){
-        while(start <= end){
-            swap(nums,start,end);
-            start++;
-            end--;
-        }
+        
+        Arrays.sort(nums,index+1,len);
     }
     
     public static void swap(int nums[],int i,int j){
