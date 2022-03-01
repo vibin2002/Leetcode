@@ -45,7 +45,7 @@ class Solution {
                 if(nextDist < dis[nextNode] || nextStops < stops[nextNode]){
                     dis[nextNode] = nextDist;
                     stops[nextNode] = nextStops;
-                    pq.add(new Node(nextNode, nextDist, nextStops));
+                    pq.offer(new Node(nextNode, nextDist, nextStops));
                 }
             }
         }
