@@ -27,7 +27,7 @@ class Solution {
             for(Node v : adjList.get(u.val)){
                 if(u.weight + v.weight < time[v.val]){
                     time[v.val] = u.weight + v.weight;
-                    heap.add(new Node(v.val,time[v.val]));
+                    heap.offer(new Node(v.val,time[v.val]));
                 }
             }
         }
