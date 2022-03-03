@@ -1,8 +1,6 @@
 class Solution {
     public List<Boolean> checkIfPrerequisite(int numCourses, int[][] prerequisites, int[][] queries) {
         List<Boolean> res = new ArrayList<>();
-        // for(int i=0;i<queries.length;i++)
-            // res.add(false);
         boolean graph[][] = new boolean[numCourses][numCourses];
         for(int[] pre : prerequisites){
             int u = pre[0],v = pre[1];
@@ -21,8 +19,6 @@ class Solution {
             int u = q[0],v = q[1];
             res.add(graph[u][v]);
         }
-        // for(boolean[] g:graph)
-            // System.out.println(Arrays.toString(g));
         return res;        
     }
 }
