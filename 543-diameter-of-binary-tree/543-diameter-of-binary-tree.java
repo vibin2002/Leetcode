@@ -18,8 +18,8 @@ class Solution {
     int maxVal = 0;
     
     public int diameterOfBinaryTree(TreeNode root) {
-        int res = utilityFunc(root);
-        return res>maxVal?res:maxVal;
+        utilityFunc(root);
+        return maxVal;
     }
     
     public int utilityFunc(TreeNode root){
