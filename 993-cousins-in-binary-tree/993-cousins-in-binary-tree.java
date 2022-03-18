@@ -43,8 +43,6 @@ class Solution {
                     }
                 }
             }
-            for(TreeNode t:q)
-                System.out.print(t.val+" ");
             System.out.println();
             if(cnt == 2)
                 return true;
