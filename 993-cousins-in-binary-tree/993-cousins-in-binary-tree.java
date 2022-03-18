@@ -43,7 +43,6 @@ class Solution {
                     }
                 }
             }
-            System.out.println();
             if(cnt == 2)
                 return true;
         }
