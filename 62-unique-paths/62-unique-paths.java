@@ -1,15 +1,12 @@
 class Solution {
     public int uniquePaths(int m, int n) {
-        int dp[][] = new int[m][n];
-        return traverse(0,0,m,n,dp);
+        int arr[] = new int[n];
+        Arrays.fill(arr,1);
+        for(int i=0;i<m-1;i++){
+            for(int j=1;j<n;j++){
+                arr[j] = arr[j] + arr[j-1]; 
+            }
+        }
+        return arr[n-1];
     }
-    
-    private int traverse(int i,int j,int m,int n,int dp[][]){
-        if(i==m-1 || j==n-1)
-            return 1;
-        if(dp[i][j]!=0)
-            return dp[i][j];
-        return dp[i][j] = traverse(i+1,j,m,n,dp) + traverse(i,j+1,m,n,dp);
-    }
-    
 }
