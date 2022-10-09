@@ -4,34 +4,26 @@ class Solution {
         int dp[] = new int[amount+1];
         Arrays.fill(dp,amount+1);
         dp[0] = 0;
-
-        for(int i=1;i<=amount;i++){
-            for(int coin : coins){
-                if(i-coin >= 0)
-                {
-                    dp[i] = Math.min(dp[i],1+dp[i-coin]);
-                }
-            }
-        }
-        return dp[amount]!=amount+1 ? dp[amount] : -1;
+        int res = find(coins,amount,dp,0,amount+1);
+        return res;
     }
     
     
-    private int find(int[] coins,int amount,int[] dp,int count)
+    private int find(int[] coins,int amount,int[] dp,int count,int total)
     {
         if(amount < 0){
-            return 0;
+            return total;
         }
-        if(amount == 0){
-            return 1;
-        }
-        if(dp[amount] != Integer.MAX_VALUE)
+        if(dp[amount] != total)
             return dp[amount];
+        int res = total;
         for(int coin : coins)
         {
-            dp[amount] = Math.min(dp[amount],find(coins,amount-coin,dp,count+1));
+            int val = find(coins,amount-coin,dp,count+1,total);
+            if(val >= 0)
+                res = Math.min(res,val+1);
         }
-        return dp[amount];
+        return dp[amount] = (res == total) ? -1 : res;
     }
     
 }
