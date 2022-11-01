@@ -1,38 +1,20 @@
 class Solution {
     public int[] findBall(int[][] grid) {
         int ans[] = new int[grid[0].length];
-        Arrays.fill(ans,-1);
         for(int i=0;i<grid[0].length;i++)
         {
-            traverse(0,i,i,grid,ans);
+            ans[i] = traverse(0,i,grid);
         }
         return ans;
     }
     
-    public void traverse(int i,int j,int index,int grid[][],int ans[]){
-        if(i>=grid.length && j>=0 && j<grid[0].length){
-            ans[index] = j; 
-        }
-        if(i<0 || j<0 || i>=grid.length || j>=grid[0].length)
-            return;
-        if(grid[i][j] == 1 && (j+1)<grid[0].length && grid[i][j+1] != -1){
-            traverse(i+1,j+1,index,grid,ans);
-        } else if(grid[i][j] == -1 && (j-1)>=0 && grid[i][j-1] != 1){
-            traverse(i+1,j-1,index,grid,ans);
-        }
+    public int traverse(int r,int c,int grid[][]){
+        if(r == grid.length)
+            return c;
+        int nc = c + grid[r][c];
+        if(nc < 0 || nc >= grid[0].length || grid[r][c] != grid[r][nc])
+            return -1;
+        return traverse(r+1,nc,grid);
     }
     
 }
-
-// [1,1,1,2,2],
-// [1,1,1,2,2],
-// [2,2,2,1,1],
-// [1,1,1,1,2],
-// [2,2,2,2,2]
-
-// [
-//     [1,1,1,1,1,1],
-//     [-,-,-,-,-,-],
-//     [1,1,1,1,1,1],
-//     [-1,-,-,-,-,-]
-// ]
