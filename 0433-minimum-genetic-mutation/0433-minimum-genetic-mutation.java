@@ -1,51 +1,38 @@
 class Solution {
-    
-    int min = Integer.MAX_VALUE;
-    char genes[] = {'A','G','C','T'};
-    
     public int minMutation(String start, String end, String[] bank) {
-        char arr1[] = start.toCharArray();
-        char arr2[] = end.toCharArray();
-        for(int i=0;i<arr1.length;i++){
-            if(arr1[i] != arr2[i]){
-                find(start,end,bank,0,new HashSet<>());
-            }
-        }
-        return min == Integer.MAX_VALUE ? -1 : min;
-    }
-    
-    public void find(String curr,String end,String[] bank,int count,Set<String> visited){
-        if(curr.equals(end)){
-            min = Math.min(min,count);
-            // System.out.println();  
-            return;
-        }
-        for(int i=0;i<curr.length();i++){
-            // if(curr.charAt(i) != end.charAt(i)){
-            StringBuilder sb = new StringBuilder(curr);
-            for(char ch : genes){
-                char temp = sb.charAt(i);
-                if(ch == temp)
-                    continue;
-                sb.setCharAt(i,ch);
-                String newstr = sb.toString();
-                if(contains(newstr,bank) && !visited.contains(newstr)){
-                    // System.out.print(newstr+" ");
-                    visited.add(newstr);
-                    find(sb.toString(),end,bank,count+1,visited);
-                    visited.remove(newstr);
+        if(start.equals(end) || bank.length==0)
+            return -1;
+        List<String> valids = Arrays.asList(bank);
+        Set<String> visited = new HashSet<>();
+        Queue<String> q = new LinkedList<>();
+        char genes[] = {'A','G','T','C'};
+        
+        q.add(start);
+        int level = 0;
+        
+        while(!q.isEmpty())
+        {
+            int size = q.size();
+            for(int index=0;index<size;index++){
+                String curr = q.poll();
+                if(curr.equals(end))
+                    return level;
+                char arr[] = curr.toCharArray();
+                for(int i=0;i<arr.length;i++){
+                    for(char ch : genes){
+                        char temp = arr[i];
+                        arr[i] = ch;
+                        String newstr = new String(arr);
+                        if(valids.contains(newstr) && !visited.contains(newstr)){
+                            q.add(newstr);
+                            visited.add(newstr);
+                        }
+                        arr[i] = temp;
+                    }
                 }
-                sb.setCharAt(i,temp);
             }
+            level++;
         }
-        // System.out.println();
+        return -1;
     }
-    
-    public boolean contains(String str,String[] bank){
-        for(String s : bank)
-            if(s.equals(str))
-                return true;
-        return false;
-    }
-    
 }
